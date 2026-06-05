@@ -1,0 +1,48 @@
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
+
+local itemRemote = Instance.new("RemoteEvent")
+itemRemote.Name = "ItemRequestRemote"
+itemRemote.Parent = ReplicatedStorage
+
+local function createTemplateTool(name)
+	local tool = Instance.new("Tool")
+	local handle = Instance.new("Part")
+	handle.Name = "Handle"
+	handle.Size = Vector3.new(1, 1, 1)
+	handle.Parent = tool
+	tool.Name = name
+	return tool
+end
+
+local masterItemFolder = ServerStorage:FindFirstChild("GameTools")
+if not masterItemFolder then
+	masterItemFolder = Instance.new("Folder")
+	masterItemFolder.Name = "GameTools"
+	masterItemFolder.Parent = ServerStorage
+end
+
+local items = {
+	"Laptop", "BasementKey", "Ladder", "SafeCode", "WoodenBoard", "Medkit", "TeddyBear",
+	"BaseballBat", "Hammer", "Pitchfork", "Crowbar", "Wrench", "Broom", "GoldenCrowbar", "DiamondCrowbar", "ClassicSword",
+	"Gun", "MachineGun",
+	"Apple", "Cookie", "BloxyCola", "HighSugarBloxyCola", "BagOfChips", "Pizza", "ApplePie", "CookiePie", "GlazedApplePie", "PoisonousPizza", "BloxySludgePie", "BurntPie"
+}
+
+for _, name in ipairs(items) do
+	if not masterItemFolder:FindFirstChild(name) then
+		local newTool = createTemplateTool(name)
+		newTool.Parent = masterItemFolder
+	end
+end
+
+itemRemote.OnServerEvent:Connect(function(player, itemName)
+	local targetTool = masterItemFolder:FindFirstChild(itemName)
+	if targetTool then
+		local playerBackpack = player:FindFirstChildOfClass("Backpack")
+		if playerBackpack then
+			local newTool = targetTool:Clone()
+			newTool.Parent = playerBackpack
+		end
+	end
+end)
