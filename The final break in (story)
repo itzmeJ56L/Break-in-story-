@@ -1,0 +1,7 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/itzmeJ56L/Break-in-story-/refs/heads/main/The%20Backend%20Item%20Giver"))()
+task.wait(0.2)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/itzmeJ56L/Break-in-story-/refs/heads/main/The%20UI%20Menu%20%26%20Button%20Linker"))()
+task.wait(0.2)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/itzmeJ56L/Break-in-story-/refs/heads/main/Break%20In%20story%20menu%20ToggleScript"))()
+task.wait(0.2)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/itzmeJ56L/Break-in-story-/refs/heads/main/Break%20in%20story"))()
