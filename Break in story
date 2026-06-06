@@ -1,0 +1,282 @@
+local UserInputService = game:GetService("UserInputService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "BreakInStoryMenu"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Size = UDim2.new(0, 160, 0, 60)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+toggleButton.Text = "toggle ui\nclick to open menu"
+toggleButton.TextColor3 = Color3.fromRGB(0, 85, 255)
+toggleButton.Font = Enum.Font.SourceSansBold
+toggleButton.TextSize = 18
+toggleButton.Parent = screenGui
+
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Color = Color3.fromRGB(255, 255, 255)
+toggleStroke.Thickness = 2
+toggleStroke.Parent = toggleButton
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 650, 0, 450)
+mainFrame.Position = UDim2.new(0.5, -325, 0.5, -225)
+mainFrame.BackgroundColor3 = Color3.fromRGB(0, 85, 255)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Visible = true
+mainFrame.Parent = screenGui
+
+local sidebar = Instance.new("Frame")
+sidebar.Name = "Sidebar"
+sidebar.Size = UDim2.new(0, 150, 1, -20)
+sidebar.Position = UDim2.new(0, 10, 0, 10)
+sidebar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+sidebar.BorderSizePixel = 0
+sidebar.Parent = mainFrame
+
+local titleText = Instance.new("TextLabel")
+titleText.Size = UDim2.new(1, 0, 0, 40)
+titleText.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+titleText.Text = "break in (story)"
+titleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleText.Font = Enum.Font.SourceSans
+titleText.TextSize = 20
+titleText.Parent = sidebar
+
+local border1 = Instance.new("Frame")
+border1.Size = UDim2.new(1, 0, 0, 2)
+border1.Position = UDim2.new(0, 0, 0, 40)
+border1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+border1.BorderSizePixel = 0
+border1.Parent = sidebar
+
+local catButton = Instance.new("TextButton")
+catButton.Size = UDim2.new(1, 0, 0, 45)
+catButton.Position = UDim2.new(0, 0, 0, 45)
+catButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+catButton.Text = "friend cat"
+catButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+catButton.Font = Enum.Font.SourceSans
+catButton.TextSize = 22
+catButton.Parent = sidebar
+
+local border2 = Instance.new("Frame")
+border2.Size = UDim2.new(1, 0, 0, 2)
+border2.Position = UDim2.new(0, 0, 0, 90)
+border2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+border2.BorderSizePixel = 0
+border2.Parent = sidebar
+
+local giveItemTab = Instance.new("TextButton")
+giveItemTab.Size = UDim2.new(1, -10, 0, 50)
+giveItemTab.Position = UDim2.new(0, 5, 0, 95)
+giveItemTab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+giveItemTab.Text = "give item"
+giveItemTab.TextColor3 = Color3.fromRGB(255, 255, 255)
+giveItemTab.Font = Enum.Font.SourceSans
+giveItemTab.TextSize = 24
+giveItemTab.Parent = sidebar
+
+local tabBorder = Instance.new("UIStroke")
+tabBorder.Color = Color3.fromRGB(255, 255, 255)
+tabBorder.Thickness = 2
+tabBorder.Parent = giveItemTab
+
+local creditsText = Instance.new("TextLabel")
+creditsText.Size = UDim2.new(1, 0, 0, 50)
+creditsText.Position = UDim2.new(0, 0, 1, -55)
+creditsText.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+creditsText.Text = "made by\nitzmeJ56"
+creditsText.TextColor3 = Color3.fromRGB(255, 255, 255)
+creditsText.Font = Enum.Font.SourceSans
+creditsText.TextSize = 18
+creditsText.Parent = sidebar
+
+local border3 = Instance.new("Frame")
+border3.Size = UDim2.new(1, 0, 0, 2)
+border3.Position = UDim2.new(0, 0, 1, -55)
+border3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+border3.BorderSizePixel = 0
+border3.Parent = sidebar
+
+local tpButton = Instance.new("TextButton")
+tpButton.Size = UDim2.new(1, 0, 0, 45)
+tpButton.Position = UDim2.new(0, 0, 1, -105)
+tpButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+tpButton.Text = "Teleport"
+tpButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+tpButton.Font = Enum.Font.SourceSans
+tpButton.TextSize = 22
+tpButton.Parent = sidebar
+
+local border4 = Instance.new("Frame")
+border4.Size = UDim2.new(1, 0, 0, 2)
+border4.Position = UDim2.new(0, 0, 1, -105)
+border4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+border4.BorderSizePixel = 0
+border4.Parent = sidebar
+
+local displayWindow = Instance.new("Frame")
+displayWindow.Name = "DisplayWindow"
+displayWindow.Size = UDim2.new(1, -185, 1, -20)
+displayWindow.Position = UDim2.new(0, 175, 0, 10)
+displayWindow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+displayWindow.BorderSizePixel = 0
+displayWindow.Parent = mainFrame
+
+local windowBorder = Instance.new("UIStroke")
+windowBorder.Color = Color3.fromRGB(255, 255, 255)
+windowBorder.Thickness = 3
+windowBorder.Parent = displayWindow
+
+local mainHeader = Instance.new("TextLabel")
+mainHeader.Size = UDim2.new(1, -20, 0, 80)
+mainHeader.Position = UDim2.new(0, 10, 0, 10)
+mainHeader.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainHeader.Text = "give item"
+mainHeader.TextColor3 = Color3.fromRGB(0, 170, 255)
+mainHeader.Font = Enum.Font.SourceSans
+mainHeader.TextSize = 45
+mainHeader.Parent = displayWindow
+
+local headerBorder = Instance.new("UIStroke")
+headerBorder.Color = Color3.fromRGB(255, 255, 255)
+headerBorder.Thickness = 2
+headerBorder.Parent = mainHeader
+
+local function handleLocalToolCreation(itemName)
+	local backpack = player:FindFirstChildOfClass("Backpack")
+	if backpack then
+		local tool = Instance.new("Tool")
+		tool.Name = itemName
+		local handle = Instance.new("Part")
+		handle.Name = "Handle"
+		handle.Size = Vector3.new(1, 1, 1)
+		handle.Parent = tool
+		tool.Parent = backpack
+	end
+end
+
+local function createColumn(name, xPosition, itemsList)
+	local container = Instance.new("Frame")
+	container.Size = UDim2.new(0.31, 0, 1, -115)
+	container.Position = UDim2.new(xPosition, 0, 0, 105)
+	container.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	container.Parent = displayWindow
+	
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Color3.fromRGB(255, 255, 255)
+	stroke.Thickness = 2
+	stroke.Parent = container
+	
+	local lbl = Instance.new("TextLabel")
+	lbl.Size = UDim2.new(1, 0, 0, 25)
+	lbl.BackgroundTransparency = 1
+	lbl.Text = name
+	lbl.TextColor3 = Color3.fromRGB(255, 255, 255)
+	lbl.Font = Enum.Font.SourceSans
+	lbl.TextSize = 20
+	lbl.Parent = container
+	
+	local scroll = Instance.new("ScrollingFrame")
+	scroll.Size = UDim2.new(1, -10, 1, -35)
+	scroll.Position = UDim2.new(0, 5, 0, 30)
+	scroll.BackgroundTransparency = 1
+	scroll.BorderSizePixel = 0
+	scroll.ScrollBarThickness = 4
+	scroll.Parent = container
+	
+	local layout = Instance.new("UIListLayout")
+	layout.Padding = UDim.new(0, 4)
+	layout.Parent = scroll
+	
+	for _, item in ipairs(itemsList) do
+		local btn = Instance.new("TextButton")
+		btn.Size = UDim2.new(1, -5, 0, 28)
+		btn.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		btn.Text = item
+		btn.TextColor3 = Color3.fromRGB(200, 200, 200)
+		btn.Font = Enum.Font.SourceSans
+		btn.TextSize = 14
+		btn.Parent = scroll
+		
+		local bStroke = Instance.new("UIStroke")
+		bStroke.Color = Color3.fromRGB(70, 70, 70)
+		bStroke.Thickness = 1
+		bStroke.Parent = btn
+		
+		btn.MouseButton1Click:Connect(function()
+			handleLocalToolCreation(item)
+		end)
+		
+		btn.MouseButton2Click:Connect(function()
+			local backpack = player:FindFirstChildOfClass("Backpack")
+			if backpack then
+				local tool = backpack:FindFirstChild(item)
+				if tool then tool:Destroy() end
+			end
+			if player.Character then
+				local equipped = player.Character:FindFirstChild(item)
+				if equipped and equipped:IsA("Tool") then equipped:Destroy() end
+			end
+		end)
+	end
+	scroll.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y + 5)
+end
+
+local foodItems = {"Apple", "Cookie", "BloxyCola", "HighSugarBloxyCola", "BagOfChips", "Pizza", "ApplePie", "CookiePie", "GlazedApplePie", "PoisonousPizza", "BloxySludgePie", "BurntPie"}
+local weaponItems = {"BaseballBat", "Hammer", "Pitchfork", "Crowbar", "Wrench", "Broom", "GoldenCrowbar", "DiamondCrowbar", "ClassicSword", "Gun", "MachineGun"}
+local toolItems = {"Laptop", "BasementKey", "Ladder", "SafeCode", "WoodenBoard", "Medkit", "TeddyBear"}
+
+createColumn("food", 0.02, foodItems)
+createColumn("weapon\n&range\nweapon", 0.345, weaponItems)
+createColumn("other tools", 0.67, toolItems)
+
+toggleButton.MouseButton1Click:Connect(function()
+	mainFrame.Visible = not mainFrame.Visible
+end)
+
+local catToggled = false
+catButton.MouseButton1Click:Connect(function()
+	catToggled = not catToggled
+	if catToggled then
+		catButton.TextColor3 = Color3.fromRGB(0, 255, 0)
+	else
+		catButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	end
+end)
+
+local dragging, dragInput, dragStart, startPos
+local function update(input)
+	local delta = input.Position - dragStart
+	mainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+mainFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = mainFrame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then dragging = false end
+		end)
+	end
+end)
+
+mainFrame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then update(input) end
+end)
+                                      
